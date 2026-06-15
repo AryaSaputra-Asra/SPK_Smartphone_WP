@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Data Smartphone{% endblock %}
+{% block page_title %}Data Smartphone{% endblock %}
+
+{% block content %}
+
+<div class="action-bar">
+    <div>
+        <h2 class="sec-title">📱 Daftar Smartphone</h2>
+        <p class="sec-sub">Kelola data smartphone yang akan dievaluasi</p>
+    </div>
+    <button class="btn btn-primary" onclick="bukaModalTambah()">➕ Tambah</button>
+</div>
+
+<div class="card" style="padding:0;overflow:hidden;">
+    <div style="overflow-x:auto;">
+        <table class="tbl" id="tblPhone">
+            <thead>
+                <tr>
+                    <th>No</th><th>Nama Smartphone</th><th>Harga (Rp)</th>
+                    <th>RAM</th><th>Storage</th><th>Baterai</th><th>Kamera</th><th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyPhone">
+                <tr><td colspan="8" class="tbl-empty">⏳ Memuat data...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- MODAL TAMBAH -->
+<div class="modal-overlay" id="mTambah">
+    <div class="modal">
+        <div class="modal-hd"><h3>➕ Tambah Smartphone</h3><button onclick="closeModal('mTambah')">✕</button></div>
+        <div class="modal-bd">
+            <div class="fg"><label>Nama Smartphone *</label><input type="text" id="aNama" placeholder="cth: Samsung Galaxy A54"></div>
+            <div class="frow">
+                <div class="fg"><label>Harga (Rp) * <span class="badge-cost">Cost</span></label><input type="number" id="aHarga" placeholder="4999000" min="0"></div>
+                <div class="fg"><label>RAM (GB) * <span class="badge-benefit">Benefit</span></label><input type="number" id="aRam" placeholder="8" min="0"></div>
+            </div>
+            <div class="frow">
+                <div class="fg"><label>Storage (GB) * <span class="badge-benefit">Benefit</span></label><input type="number" id="aStorage" placeholder="256" min="0"></div>
+                <div class="fg"><label>Baterai (mAh) * <span class="badge-benefit">Benefit</span></label><input type="number" id="aBaterai" placeholder="5000" min="0"></div>
+            </div>
+            <div class="fg"><label>Kamera (MP) * <span class="badge-benefit">Benefit</span></label><input type="number" id="aKamera" placeholder="50" min="0"></div>
+        </div>
+        <div class="modal-ft">
+            <button class="btn btn-sec" onclick="closeModal('mTambah')">Batal</button>
+            <button class="btn btn-primary" onclick="simpanTambah()">💾 Simpan</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDIT -->
+<div class="modal-overlay" id="mEdit">
+    <div class="modal">
+        <div class="modal-hd"><h3>✏️ Edit Smartphone</h3><button onclick="closeModal('mEdit')">✕</button></div>
+        <div class="modal-bd">
+            <input type="hidden" id="eId">
+            <div class="fg"><label>Nama Smartphone *</label><input type="text" id="eNama"></div>
+            <div class="frow">
+                <div class="fg"><label>Harga (Rp) * <span class="badge-cost">Cost</span></label><input type="number" id="eHarga" min="0"></div>
+                <div class="fg"><label>RAM (GB) * <span class="badge-benefit">Benefit</span></label><input type="number" id="eRam" min="0"></div>
+            </div>
+            <div class="frow">
+                <div class="fg"><label>Storage (GB) * <span class="badge-benefit">Benefit</span></label><input type="number" id="eStorage" min="0"></div>
+                <div class="fg"><label>Baterai (mAh) * <span class="badge-benefit">Benefit</span></label><input type="number" id="eBaterai" min="0"></div>
+            </div>
+            <div class="fg"><label>Kamera (MP) * <span class="badge-benefit">Benefit</span></label><input type="number" id="eKamera" min="0"></div>
+        </div>
+        <div class="modal-ft">
+            <button class="btn btn-sec" onclick="closeModal('mEdit')">Batal</button>
+            <button class="btn btn-primary" onclick="simpanEdit()">💾 Update</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL HAPUS -->
+<div class="modal-overlay" id="mHapus">
+    <div class="modal modal-sm">
+        <div class="modal-hd"><h3>🗑️ Konfirmasi Hapus</h3><button onclick="closeModal('mHapus')">✕</button></div>
+        <div class="modal-bd" style="text-align:center;padding:24px 20px;">
+            <div style="font-size:40px;margin-bottom:12px;">⚠️</div>
+            <p>Hapus smartphone:</p>
+            <p id="hNama" style="font-weight:700;color:var(--primary);margin:8px 0;font-size:15px;">-</p>
+            <p style="font-size:12px;color:var(--danger);">Data tidak dapat dikembalikan!</p>
+            <input type="hidden" id="hId">
+        </div>
+        <div class="modal-ft">
+            <button class="btn btn-sec" onclick="closeModal('mHapus')">Batal</button>
+            <button class="btn btn-danger" onclick="konfirmasiHapus()">🗑️ Hapus</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/data.js') }}"></script>{% endblock %}

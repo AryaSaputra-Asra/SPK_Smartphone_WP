@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- RUNNING TEXT -->
+<div class="marquee-wrap">
+    <span class="marquee-label">📢 INFO</span>
+    <div class="marquee-track">
+        <span class="marquee-text">
+            🎯 Selamat Datang di SPK Pemilihan Smartphone &nbsp;|&nbsp;
+            📊 Metode Weighted Product (WP) &nbsp;|&nbsp;
+            🏫 Universitas Pamulang &nbsp;|&nbsp;
+            💡 Kriteria: Harga, RAM, Storage, Baterai, Kamera &nbsp;|&nbsp;
+            ⭐ Sistem Pendukung Keputusan – Semester 6 &nbsp;|&nbsp;
+        </span>
+    </div>
+</div>
+
+<!-- STATISTIK -->
+<div class="stats-grid">
+    <div class="card stat stat-1">
+        <span class="stat-icon"></span>
+        <div>
+            <div class="stat-num" id="totalSmartphone">{{ total }}</div>
+            <div class="stat-lbl">Smartphone</div>
+        </div>
+    </div>
+    <div class="card stat stat-2">
+        <span class="stat-icon">📊</span>
+        <div>
+            <div class="stat-num">5</div>
+            <div class="stat-lbl">Jumlah Kriteria</div>
+        </div>
+    </div>
+    <div class="card stat stat-3">
+        <span class="stat-icon">🧮</span>
+        <div>
+            <div class="stat-num">WP</div>
+            <div class="stat-lbl">Metode Digunakan</div>
+        </div>
+    </div>
+    <div class="card stat stat-4">
+        <span class="stat-icon">✅</span>
+        <div>
+            <div class="stat-num">Aktif</div>
+            <div class="stat-lbl">Status Sistem</div>
+        </div>
+    </div>
+</div>
+
+<!-- KRITERIA -->
+<div class="card">
+    <div class="card-head">
+        <h2 class="card-title">📋 Kriteria Penilaian</h2>
+        <p class="card-sub">Bobot kriteria dalam metode Weighted Product</p>
+    </div>
+    <div class="kriteria-grid">
+        <div class="krit-item"><div class="krit-icon">💰</div><div class="krit-name">Harga</div><span class="badge-cost">Cost</span><div class="krit-desc">Semakin murah semakin baik</div></div>
+        <div class="krit-item"><div class="krit-icon">🧠</div><div class="krit-name">RAM</div><span class="badge-benefit">Benefit</span><div class="krit-desc">Semakin besar semakin baik</div></div>
+        <div class="krit-item"><div class="krit-icon">💾</div><div class="krit-name">Storage</div><span class="badge-benefit">Benefit</span><div class="krit-desc">Semakin besar semakin baik</div></div>
+        <div class="krit-item"><div class="krit-icon">🔋</div><div class="krit-name">Baterai</div><span class="badge-benefit">Benefit</span><div class="krit-desc">Semakin besar semakin baik</div></div>
+        <div class="krit-item"><div class="krit-icon">📷</div><div class="krit-name">Kamera</div><span class="badge-benefit">Benefit</span><div class="krit-desc">Semakin besar semakin baik</div></div>
+    </div>
+</div>
+
+<!-- PANDUAN -->
+<div class="card">
+    <div class="card-head">
+        <h2 class="card-title">🚀 Cara Penggunaan</h2>
+    </div>
+    <div class="steps">
+        <div class="step"><div class="step-n">1</div><div><div class="step-t">Input Data Smartphone</div><div class="step-d">Tambahkan data pada menu "Data Smartphone"</div></div></div>
+        <div class="step"><div class="step-n">2</div><div><div class="step-t">Atur Bobot Kriteria</div><div class="step-d">Tentukan bobot sesuai prioritas Anda</div></div></div>
+        <div class="step"><div class="step-n">3</div><div><div class="step-t">Proses Perhitungan WP</div><div class="step-d">Klik "Hitung Ranking" pada menu Perhitungan WP</div></div></div>
+        <div class="step"><div class="step-n">4</div><div><div class="step-t">Lihat Hasil Ranking</div><div class="step-d">Nilai V tertinggi = rekomendasi terbaik</div></div></div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>{% endblock %}

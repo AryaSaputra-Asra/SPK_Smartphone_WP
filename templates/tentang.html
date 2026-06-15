@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Tentang{% endblock %}
+{% block page_title %}Tentang Aplikasi{% endblock %}
+
+{% block content %}
+
+<div class="card about-hero">
+    <div style="font-size:52px;margin-bottom:10px;">📱</div>
+    <h1 style="font-size:22px;font-weight:800;margin-bottom:6px;">SPK Pemilihan Smartphone</h1>
+    <p style="font-size:12px;opacity:.7;margin-bottom:12px;">Versi 1.0.0 &nbsp;|&nbsp; Metode Weighted Product (WP)</p>
+    <p style="font-size:13.5px;opacity:.88;max-width:500px;margin:0 auto;line-height:1.8;">
+        Sistem Pendukung Keputusan untuk membantu memilih smartphone terbaik
+        berdasarkan beberapa kriteria menggunakan metode <strong>Weighted Product (WP)</strong>.
+    </p>
+</div>
+
+<div class="row-2">
+    <div class="card">
+        <div class="card-head"><h2 class="card-title">📋 Informasi Aplikasi</h2></div>
+        <table class="info-tbl">
+            <tr><td>Nama Aplikasi</td><td>SPK Pemilihan Smartphone</td></tr>
+            <tr><td>Metode</td><td>Weighted Product (WP)</td></tr>
+            <tr><td>Versi</td><td>1.0.0</td></tr>
+            <tr><td>Backend</td><td>Python Flask</td></tr>
+            <tr><td>Database</td><td>SQLite</td></tr>
+            <tr><td>Frontend</td><td>HTML, CSS, JavaScript</td></tr>
+            <tr><td>Tahun</td><td>2026</td></tr>
+        </table>
+    </div>
+    <div class="card">
+        <div class="card-head"><h2 class="card-title">🎓 Informasi Akademik</h2></div>
+        <table class="info-tbl">
+            <tr><td>Mata Kuliah</td><td>Pemrograman II</td></tr>
+            <tr><td>Semester</td><td>6 (Enam)</td></tr>
+            <tr><td>Kelas</td><td>06TPLM006</td></tr>
+            <tr><td>Universitas</td><td>Universitas Pamulang</td></tr>
+            <tr><td>Prodi</td><td>Teknik Informatika</td></tr>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-head"><h2 class="card-title">🧮 Tentang Metode WP</h2></div>
+    <p style="font-size:13.5px;color:#475569;line-height:1.8;margin-bottom:12px;">
+        <strong>Weighted Product (WP)</strong> adalah metode pengambilan keputusan multi-kriteria yang menggunakan
+        perkalian terbobot. Setiap nilai kriteria dipangkatkan dengan bobot kriterianya.
+    </p>
+    <div class="formula-box">
+        <div class="formula-lbl">Vektor S</div>
+        <div class="formula-math">S<sub>i</sub> = ∏ (X<sub>ij</sub>)<sup>W<sub>j</sub></sup></div>
+        <div class="formula-note">Benefit: W<sub>j</sub> &gt; 0 &nbsp;|&nbsp; Cost: W<sub>j</sub> &lt; 0</div>
+    </div>
+    <div class="formula-box">
+        <div class="formula-lbl">Vektor V</div>
+        <div class="formula-math">V<sub>i</sub> = S<sub>i</sub> / Σ S<sub>i</sub></div>
+        <div class="formula-note">Nilai V terbesar = alternatif terbaik</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-head"><h2 class="card-title">🛠️ Teknologi</h2></div>
+    <div class="tech-grid">
+        <div class="tech-item"><div class="tech-ic">🐍</div><div class="tech-nm">Python</div><div class="tech-vr">Flask</div></div>
+        <div class="tech-item"><div class="tech-ic">🗄️</div><div class="tech-nm">SQLite</div><div class="tech-vr">Database</div></div>
+        <div class="tech-item"><div class="tech-ic">🌐</div><div class="tech-nm">HTML5</div><div class="tech-vr">Struktur</div></div>
+        <div class="tech-item"><div class="tech-ic">🎨</div><div class="tech-nm">CSS3</div><div class="tech-vr">Pure CSS</div></div>
+        <div class="tech-item"><div class="tech-ic">⚡</div><div class="tech-nm">JavaScript</div><div class="tech-vr">Vanilla JS</div></div>
+    </div>
+</div>
+
+{% endblock %}

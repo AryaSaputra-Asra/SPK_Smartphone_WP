@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Perhitungan WP{% endblock %}
+{% block page_title %}Perhitungan Weighted Product{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-head">
+        <h2 class="card-title">⚖️ Bobot Kriteria</h2>
+        <p class="card-sub">Masukkan bobot 1–5 untuk setiap kriteria</p>
+    </div>
+    <div class="bobot-grid">
+        <div class="bobot-item">
+            <div class="bobot-top"><span>💰</span><div><div class="bobot-name">Harga</div><span class="badge-cost">Cost (−)</span></div></div>
+            <input type="number" id="bHarga" class="bobot-inp" value="3" min="1" max="5">
+            <div class="bobot-hint">Semakin murah semakin baik</div>
+        </div>
+        <div class="bobot-item">
+            <div class="bobot-top"><span>🧠</span><div><div class="bobot-name">RAM</div><span class="badge-benefit">Benefit (+)</span></div></div>
+            <input type="number" id="bRam" class="bobot-inp" value="4" min="1" max="5">
+            <div class="bobot-hint">Semakin besar semakin baik</div>
+        </div>
+        <div class="bobot-item">
+            <div class="bobot-top"><span>💾</span><div><div class="bobot-name">Storage</div><span class="badge-benefit">Benefit (+)</span></div></div>
+            <input type="number" id="bStorage" class="bobot-inp" value="3" min="1" max="5">
+            <div class="bobot-hint">Semakin besar semakin baik</div>
+        </div>
+        <div class="bobot-item">
+            <div class="bobot-top"><span>🔋</span><div><div class="bobot-name">Baterai</div><span class="badge-benefit">Benefit (+)</span></div></div>
+            <input type="number" id="bBaterai" class="bobot-inp" value="4" min="1" max="5">
+            <div class="bobot-hint">Semakin besar semakin baik</div>
+        </div>
+        <div class="bobot-item">
+            <div class="bobot-top"><span>📷</span><div><div class="bobot-name">Kamera</div><span class="badge-benefit">Benefit (+)</span></div></div>
+            <input type="number" id="bKamera" class="bobot-inp" value="5" min="1" max="5">
+            <div class="bobot-hint">Semakin besar semakin baik</div>
+        </div>
+    </div>
+    <div class="bobot-actions">
+        <button class="btn btn-primary btn-lg" id="btnHitung" onclick="prosesWP()">🧮 Hitung Ranking</button>
+        <button class="btn btn-sec" onclick="resetBobot()">🔄 Reset</button>
+    </div>
+</div>
+
+<div id="hasilArea" style="display:none;display:flex;flex-direction:column;gap:16px;">
+
+    <!-- PEMENANG -->
+    <div class="card winner-card">
+        <div class="winner-crown">🏆</div>
+        <div class="winner-label">Smartphone Terbaik Direkomendasikan</div>
+        <div class="winner-name" id="wNama">–</div>
+        <div class="winner-v">Nilai V: <strong id="wV">–</strong></div>
+        <div class="winner-specs" id="wSpecs"></div>
+    </div>
+
+    <!-- BOBOT NORMAL -->
+    <div class="card">
+        <div class="card-head"><h2 class="card-title">📐 Bobot Ternormalisasi</h2></div>
+        <div class="bn-row" id="bnRow"></div>
+    </div>
+
+    <!-- TABEL HASIL -->
+    <div class="card" style="padding:0;overflow:hidden;">
+        <div class="card-head" style="padding:16px 18px 0;"><h2 class="card-title">📊 Hasil Perhitungan (Nilai S & V)</h2></div>
+        <div style="overflow-x:auto;">
+            <table class="tbl">
+                <thead>
+                    <tr><th>Rank</th><th>Nama</th><th>Harga</th><th>RAM</th><th>Storage</th><th>Baterai</th><th>Kamera</th><th>Nilai S</th><th>Nilai V</th></tr>
+                </thead>
+                <tbody id="tbodyHasil"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- LANGKAH WP -->
+    <div class="card">
+        <div class="card-head"><h2 class="card-title">📖 Langkah Perhitungan WP</h2></div>
+        <div class="steps">
+            <div class="step"><div class="step-n">1</div><div><div class="step-t">Normalisasi Bobot</div><div class="step-d">W<sub>j</sub> = w<sub>j</sub> / Σw<sub>j</sub> — agar jumlah bobot = 1</div></div></div>
+            <div class="step"><div class="step-n">2</div><div><div class="step-t">Hitung Vektor S</div><div class="step-d">S<sub>i</sub> = Π (X<sub>ij</sub>)<sup>W<sub>j</sub></sup> — Benefit: +W, Cost: −W</div></div></div>
+            <div class="step"><div class="step-n">3</div><div><div class="step-t">Hitung Vektor V</div><div class="step-d">V<sub>i</sub> = S<sub>i</sub> / ΣS<sub>i</sub> — nilai relatif tiap alternatif</div></div></div>
+            <div class="step"><div class="step-n">4</div><div><div class="step-t">Ranking</div><div class="step-d">Urut V dari besar ke kecil — V terbesar = pilihan terbaik ✅</div></div></div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/perhitungan.js') }}"></script>{% endblock %}

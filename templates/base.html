@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SPK{% endblock %} – Weighted Product</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+        <div class="brand-icon">📱</div>
+        <div>
+            <span class="brand-title">SPK Smartphone</span>
+            <span class="brand-sub">Metode WP</span>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <ul>
+            <li class="{% if request.endpoint == 'dashboard' %}active{% endif %}">
+                <a href="{{ url_for('dashboard') }}"><span class="ni">🏠</span> Dashboard</a>
+            </li>
+            <li class="{% if request.endpoint == 'data_smartphone' %}active{% endif %}">
+                <a href="{{ url_for('data_smartphone') }}"><span class="ni">📋</span> Data Smartphone</a>
+            </li>
+            <li class="{% if request.endpoint == 'perhitungan' %}active{% endif %}">
+                <a href="{{ url_for('perhitungan') }}"><span class="ni">🧮</span> Perhitungan WP</a>
+            </li>
+            <li class="{% if request.endpoint == 'tentang' %}active{% endif %}">
+                <a href="{{ url_for('tentang') }}"><span class="ni">ℹ️</span> Tentang</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- JAM & TANGGAL DI SIDEBAR BAWAH -->
+    <div class="sidebar-clock">
+        <div class="sc-time" id="jamDigital">00:00:00</div>
+        <div class="sc-date" id="tanggalHari">–</div>
+    </div>
+
+    <div class="sidebar-foot">© 2025 SPK WP App</div>
+</aside>
+
+<!-- MAIN -->
+<div class="main-wrap">
+    <header class="topbar">
+        <h1 class="topbar-title">{% block page_title %}Dashboard{% endblock %}</h1>
+        <span class="topbar-badge">🎓 Universitas Pamulang</span>
+    </header>
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
