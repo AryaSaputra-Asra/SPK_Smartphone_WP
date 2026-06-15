@@ -41,7 +41,10 @@ def init_db():
 # ── PAGES ────────────────────────────────────────────────────
 @app.route('/')
 def dashboard():
-    return "Railway Test OK"
+    conn = get_db()
+    total = conn.execute('SELECT COUNT(*) FROM smartphone').fetchone()[0]
+    conn.close()
+    return render_template('dashboard.html', total=total)
 
 @app.route('/data')
 def data_smartphone():
